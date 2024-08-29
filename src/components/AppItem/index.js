@@ -1,5 +1,6 @@
 // Write your code here
 import './index.css'
+
 const AppItem = props => {
   const {appDetails} = props
   const {appId, appName, imageUrl} = appDetails

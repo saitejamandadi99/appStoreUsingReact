@@ -294,26 +294,53 @@ const appsList = [
 
 // Write your code here
 class AppStore extends Component {
-  state = {activeTabId: tabsList[0].tabId}
-
-  updateTabId = id => {
-    this.setState({activeTabId: id})
+  state = {
+    searchInput: '',
+    activeTabId: tabsList[0].tabId,
   }
 
-  filteredAppList = () => {
+  updateTabId = tabId => {
+    this.setState({activeTabId: tabId})
+  }
+
+  onChangeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
+  getActiveTabApps = searchedApps => {
     const {activeTabId} = this.state
-    return appsList.filter(app => app.category === activeTabId)
+    const filteredApps = searchedApps.filter(
+      eachSearchedApp => eachSearchedApp.category === activeTabId,
+    )
+
+    return filteredApps
+  }
+
+  getSearchResults = () => {
+    const {searchInput} = this.state
+    const searchResults = appsList.filter(eachApp =>
+      eachApp.appName.toLowerCase().includes(searchInput.toLowerCase()),
+    )
+
+    return searchResults
   }
 
   render() {
-    const {activeTabId} = this.state
-    const filteredApps = this.filteredAppList()
+    const {searchInput, activeTabId} = this.state
+    const searchResults = this.getSearchResults()
+    const filteredApps = this.getActiveTabApps(searchResults)
     return (
       <div className="appContainer">
         <div className="appStoreContainer">
           <h1 className="heading">App Store</h1>
           <div className="searchContainer">
-            <input placeholder="Search" type="search" className="searchEle" />
+            <input
+              placeholder="Search"
+              type="search"
+              className="searchEle"
+              onChange={this.onChangeSearchInput}
+              value={searchInput}
+            />
             <img
               src="https://assets.ccbp.in/frontend/react-js/app-store/app-store-search-img.png"
               alt="search icon"
