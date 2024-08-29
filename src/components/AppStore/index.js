@@ -294,7 +294,20 @@ const appsList = [
 
 // Write your code here
 class AppStore extends Component {
+  state = {activeTabId: tabsList[0].tabId}
+
+  updateTabId = id => {
+    this.setState({activeTabId: id})
+  }
+
+  filteredAppList = () => {
+    const {activeTabId} = this.state
+    return appsList.filter(app => app.category === activeTabId)
+  }
+
   render() {
+    const {activeTabId} = this.state
+    const filteredApps = this.filteredAppList()
     return (
       <div className="appContainer">
         <div className="appStoreContainer">
@@ -309,14 +322,19 @@ class AppStore extends Component {
           </div>
           <ul className="listContainer">
             {tabsList.map(tabDetails => (
-              <TabItem tabDetails={tabDetails} key={tabDetails.id} />
+              <TabItem
+                tabDetails={tabDetails}
+                key={tabDetails.tabId}
+                updateTabId={this.updateTabId}
+                isActive={activeTabId === tabDetails.tabId}
+              />
             ))}
           </ul>
           <hr />
 
           <ul className="appListsContainer">
-            {appsList.map(appDetails => (
-              <AppItem appDetails={appDetails} key={appDetails.id} />
+            {filteredApps.map(appDetails => (
+              <AppItem appDetails={appDetails} key={appDetails.appId} />
             ))}
           </ul>
         </div>

@@ -1,7 +1,15 @@
 /* Write your CSS here */
 .button {
-  border: none;
+  font-family: 'Roboto';
+  color: #9aa5b1;
+  font-weight: 500;
+  font-size: 16px;
   background-color: transparent;
-  color: #7b8794;
-  font-size: 20px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+.active-btn {
+  border-bottom: 2px solid #0b69ff;
+  color: #3e4c59;
 }
