@@ -1,0 +1,47 @@
+/* Write your CSS here */
+.appContainer {
+  display: flex;
+  justify-content: center;
+
+  background-image: linear-gradient(to bottom, #fff1eb, #ace0f9);
+  min-height: 100vh;
+  padding: 10px;
+}
+.appStoreContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.heading {
+  font-family: Bree serif;
+  font-size: 40px;
+  font-weight: 600;
+}
+.searchContainer {
+  display: flex;
+  flex-direction: row;
+  border: solid 2px #7b8794;
+}
+.searchEle {
+  outline: none;
+  height: 40px;
+  border: 0px;
+  background-color: transparent;
+  padding: 15px;
+  font-weight: 600;
+}
+.searchIcon {
+  height: 40px;
+  width: 40px;
+}
+.listContainer {
+  display: flex;
+  padding: 5px;
+  list-style: none;
+  color: #7b8794;
+}
+.appListsContainer {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+}
